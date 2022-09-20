@@ -1,10 +1,10 @@
 package com.springbootweb.app.springbootweb.controllers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,6 +19,16 @@ import com.springbootweb.app.springbootweb.models.Usuario;
 @RequestMapping("/app") // Path inicial http://localhost:8081/app...
 public class IndexController {
 
+  // Para hacer referencias desde el "application.properties"
+  @Value("${texto.indexcontroller.index.titulo}") // Llave creada 
+  private String textoIndex;
+
+  @Value("${texto.indexcontroller.perfil.titulo}")
+  private String textoPerfil;
+
+  @Value("${texto.indexcontroller.listar.titulo}")
+  private String textoListar;
+
   // @RequestMapping(value = "/index", method = RequestMethod.GET)
   // @GetMapping(value = "/index")
   @GetMapping({ "", "/", "/index", "/home" })
@@ -29,7 +39,7 @@ public class IndexController {
     ModelAndView mv
   ) {
     // #1 pasar datos a la vista HTML
-    model.addAttribute("titulo", "Spring Framework!");
+    model.addAttribute("titulo", textoIndex);
     // #2
     modelMap.addAttribute("welcome", "Bienvenidos!");
 
@@ -49,7 +59,7 @@ public class IndexController {
     usuario.setApellido("Angel");
     usuario.setEmail("angel@test.com");
 
-    String titulo = "Perfil del usuario: ".concat(usuario.getNombre());
+    String titulo = textoPerfil.concat(usuario.getNombre());
     model.addAttribute("usuario", usuario);
     model.addAttribute("titulo", titulo);
 
@@ -63,7 +73,7 @@ public class IndexController {
     // usuarios.add(new Usuario("Test", "Dos", "test2@test.com"));
     // usuarios.add(new Usuario("Test", "Tres", "test3@test.com"));
 
-    model.addAttribute("titulo", "Listado de usuarios");
+    model.addAttribute("titulo", textoListar);
     // model.addAttribute("usuarios", usuarios);
 
     return "listar";

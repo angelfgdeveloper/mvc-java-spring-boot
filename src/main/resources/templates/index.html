@@ -7,15 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <title>Spring Boot</title> -->
   <title th:text="${titulo}"></title>
+
+  <!-- Manera de usar estilos en Thymeleaf -->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
-  <h1 th:text="${titulo}"></h1>
-  <h2 th:text="${welcome}"></h2>
+  <h1 class="color-rojo" th:text="${titulo}"></h1>
+  <h2 class="color-azul" th:text="${welcome}"></h2>
 
-  <h3 th:text="${seccion}"></h3>
+  <h3 class="color-green" th:text="${seccion}"></h3>
   <h4 th:text="${name}"></h4>
+
+  <img class="img-vue" th:src="@{/images/vue-js.jpeg}" alt="Logo">
 
 </body>
 
